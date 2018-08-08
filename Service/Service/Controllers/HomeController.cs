@@ -20,11 +20,16 @@ namespace Service.Controllers
         [HttpGet]
         public JsonResult Index()
         {
-            Random rnd = new Random();
-            int extra = rnd.Next(1, 1000);
-            var randomUrl = "www.google.com/randomLink" + extra;
-            var result=_urlManager.ShortenUrl(randomUrl);
+            return Json("pass a url to /home/create in a post", JsonRequestBehavior.AllowGet);
+        }
+        
+        public JsonResult Create(string url)
+        {
+            var result = _urlManager.ShortenUrl(url);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+
+
     }
 }
