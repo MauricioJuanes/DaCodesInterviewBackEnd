@@ -1,4 +1,6 @@
 ﻿using Service.Business.Interfaces;
+using Service.Data.Entities;
+using Service.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +20,20 @@ namespace Service.Controllers
             this._urlManager = urlManager;
         }
         [HttpGet]
-        public JsonResult Index()
+        public ActionResult Index()
         {
-            return Json("pass a url to /home/create in a post", JsonRequestBehavior.AllowGet);
+            return View(new Url());
         }
+        public ActionResult Index(Url url)
+        {
+            if (ModelState.IsValid)
+            {
+                UrlInfo info = _urlManager.ShortenUrl(url.OriginalUrl);
+                url.ShortUrl= string.Format("{0}://{1}{2}{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), info.Abreviation);
 
+            }
+            return View(url);
+        }
         public JsonResult Create(string url)
         {
             var result = _urlManager.ShortenUrl(url);
