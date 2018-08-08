@@ -70,7 +70,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UrlContext.cs" />
-    <Compile Include="Entities\Url.cs" />
+    <Compile Include="Entities\UrlInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

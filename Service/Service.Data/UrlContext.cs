@@ -17,6 +17,6 @@ namespace Service.Data
         {
         }
 
-        public virtual DbSet<UrlInfo> ShortUrls { get; set; }
+        public virtual DbSet<UrlInfo> UrlInfos { get; set; }
     }
 }
