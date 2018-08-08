@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Service.Business.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +9,22 @@ namespace Service.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
-            ViewBag.Title = "Home Page";
+        private IUrlManager _urlManager;
 
-            return View();
+
+
+        public HomeController(IUrlManager urlManager)
+        {
+            this._urlManager = urlManager;
+        }
+        [HttpGet]
+        public JsonResult Index()
+        {
+            Random rnd = new Random();
+            int extra = rnd.Next(1, 1000);
+            var randomUrl = "www.google.com/randomLink" + extra;
+            var result=_urlManager.ShortenUrl(randomUrl);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

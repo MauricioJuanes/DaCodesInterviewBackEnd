@@ -2,7 +2,7 @@
 
 namespace Service.Business.Interfaces
 {
-    interface IUrlManager
+    public interface IUrlManager
     {
         UrlInfo ShortenUrl(string originalUrl);
     }
