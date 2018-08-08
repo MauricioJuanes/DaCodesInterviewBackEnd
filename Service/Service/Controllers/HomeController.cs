@@ -22,10 +22,17 @@ namespace Service.Controllers
         {
             return Json("pass a url to /home/create in a post", JsonRequestBehavior.AllowGet);
         }
-        
+
         public JsonResult Create(string url)
         {
             var result = _urlManager.ShortenUrl(url);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult CreateMultiple(IEnumerable<string> urls)
+        {
+           
+            var result =  urls.Select(url=> _urlManager.ShortenUrl(url));
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
