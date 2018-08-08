@@ -12,6 +12,11 @@ namespace Service
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute(
+                name: "Expand",
+                url: "{abbreviation}",
+                defaults: new { controller = "Home", action = "Expand" }
+            );
 
             routes.MapRoute(
                 name: "Default",

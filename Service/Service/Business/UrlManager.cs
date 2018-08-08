@@ -42,6 +42,21 @@ namespace Service.Business
             }
         }
 
+        public string GetOriginalUrl(string abreviation)
+        {
+            
+                using (var ctx = new UrlContext())
+                {
+                    UrlInfo url = ctx.UrlInfos.Where(u => u.Abreviation == abreviation).FirstOrDefault();
+                    if (url == null)
+                    {
+                        throw new ArgumentException("Abbreviation was not found");
+                    }
+
+                    return url.OriginalUrl;
+                }
+        }
+
         private string NewAbreviation()
         {
             ///As time passes and abreviations are used the urls will become longer, 

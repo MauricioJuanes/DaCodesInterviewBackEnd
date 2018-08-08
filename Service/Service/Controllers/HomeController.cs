@@ -29,7 +29,12 @@ namespace Service.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Expand(string abbreviation)
+        {
 
+            string url = this._urlManager.GetOriginalUrl(abbreviation);
+            return this.RedirectPermanent(url);
+        }
 
     }
 }
