@@ -3,6 +3,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using Service.Areas.HelpPage.ModelDescriptions;
 using Service.Areas.HelpPage.Models;
+using Unity.Attributes;
 
 namespace Service.Areas.HelpPage.Controllers
 {
@@ -13,8 +14,8 @@ namespace Service.Areas.HelpPage.Controllers
     {
         private const string ErrorViewName = "Error";
 
-        public HelpController()
-            : this(GlobalConfiguration.Configuration)
+        [InjectionConstructor]
+        public HelpController() : this(GlobalConfiguration.Configuration)
         {
         }
 
